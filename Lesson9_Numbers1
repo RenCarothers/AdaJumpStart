@@ -1,0 +1,12 @@
+print "Welcome to Numbers Problem Assignment 1!  I'm going to do some math based on the answers you give me to some questions.  Got it?"
+print "\n" # You will come to learn my brain works best with spaces between different processes.
+print "\n"
+print "Let's get started! Please input a positive integer value.  (I'll assume you recall from math class what that is, and can select an appropriate answer!)"
+userinput_1 = Integer(gets.chomp)
+print "#{userinput_1}? Awesome!"
+puts " Please select another one."
+userinput_2 = Integer(gets.chomp)
+puts "And now one final one."
+userinput_3 = Integer(gets.chomp)
+puts "20 added to the numbers you entered gives us..."
+puts "#{(sum = 20 + userinput_1)}, #{(sum = 20 + userinput_2)}, and #{(sum = 20 + userinput_3)}, respectively."

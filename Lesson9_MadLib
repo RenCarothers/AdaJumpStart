@@ -1,0 +1,86 @@
+
+print "MadLib Time!!"
+print "\n" # Adding line breaks for ease  of reading as I learn coding
+# to help my brain break up the concepts.
+print "Hey there!  For this madlib, please enter the following parts of speech below so that I can generate a fun story for you!"
+print " (If you're confused, learn about madlibs here: https://www.eduplace.com/tales/)" # I used a lib here as a template.
+print "\n"
+puts " Gimme a singular noun."
+madlibinput_1 = gets.chomp # gets asks the user to type an entry and 
+# chomp removes the newline character that is auto added.
+
+puts "Gimme a friend's name."
+madlibinput_2 = gets.capitalize.chomp # capitalizes proper noun
+
+puts "And another friend."
+madlibinput_3 = gets.chomp.capitalize
+
+puts "And another."
+madlibinput_4 = gets.chomp.capitalize
+
+puts "And a final friend's name."
+madlibinput_5 = gets.chomp.capitalize
+
+puts "Gimme a musical instrument (singular)."
+madlibinput_6 = gets.chomp
+
+puts "Gimme an adjective."
+madlibinput_7 = gets.chomp
+
+puts "And another one."
+madlibinput_8 = gets.chomp
+
+puts "Now an animal (plural)."
+madlibinput_9 = gets.chomp
+
+puts "And another one (plural)."
+madlibinput_10 = gets.chomp
+
+puts "Gimme a plural noun."
+madlibinput_11 = gets.chomp
+
+puts "And another one."
+madlibinput_12 = gets.chomp
+
+puts "Gimme a verb ending in -ing."
+madlibinput_13 = gets.chomp
+
+puts "Gimme your name."
+madlibinput_14 = gets.chomp
+
+puts "Gimme one last adjective."
+madlibinput_15 = gets.chomp
+
+puts "And lastly, gimme a two digit (positive) integer."
+madlibinput_16 = gets.chomp.to_i # added to_i in case user doesn't
+# select an integer
+
+print "\n"
+# madlib now is calculated
+puts "It was New Year's Day, and I was watching #{madlibinput_1}ball on TV with my friends #{madlibinput_2}, #{madlibinput_3}, #{madlibinput_4}, and #{madlibinput_5}."
+# #{} inputs the specified variable into the line
+print "\n"
+
+puts "“Hey, #{madlibinput_3},” #{madlibinput_4} said, “What is your New Year's resolution?”"
+print "\n"
+
+puts "“I am going to learn to play the #{madlibinput_6},” they said. “Then I am going to play it at nursing homes. I am sure it will make the residents #{madlibinput_7}.”"
+print "\n"
+
+puts "“That's #{madlibinput_8},” said #{madlibinput_2}. “I am going to volunteer in a shelter for homeless #{madlibinput_9} and #{madlibinput_10}. They are so cute. How about you, #{madlibinput_4}?”"
+print "\n"
+
+puts "“I am going to help out around the house,” they said. “Every night, I will put the #{madlibinput_11} and the #{madlibinput_12} in the dishwasher without being asked.”"
+print "\n"
+
+puts "“I want to improve my grades,” said #{madlibinput_5}. “I will study math, science, and #{madlibinput_13} every night.”"
+print "\n"
+
+puts "They all turned to me."
+print "\n"
+
+puts "“What is your New Year's Resolution, #{madlibinput_14}?”"
+print "\n"
+
+puts "“I'm not making one,” I said. “I'm perfectly #{madlibinput_15} already!  Happy 20#{madlibinput_16} everyone!”"
+print "\n"

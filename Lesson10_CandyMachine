@@ -1,0 +1,57 @@
+# created with repl.it until I can save up for a mac that will run the programs I need. https://repl.it/@achilleaeos/
+puts "Was that your belly grumbling?  Jeez, that's embarrasing... Are you hungry??"
+print "\n" # a paragraph break for the reader's eyes
+puts "Well...good thing there's that candy machine right in front of you!  Fish out yer change -- how much do ya got? (Type in your coinage amount and hit enter.  Ya don't need to enter a $ sign, bb, but please do include two decimal places.)"
+my_num = gets.chomp.to_f
+# gets asks the user for input
+# chomp gets rid of the extra resulting newline
+# makes their entry have a decimal if they didn't listen and just gave an integer
+puts "So, you have $#{my_num.round(2)} in dollars, then?"
+# prints the number they input with $ before it
+# rounds any decimals that were to the thousandth or larger, to the hundreth so that they are a monetary value
+# I still need to figure out the code that would print to the hundredth in every case (e.g. $2.00 prints as $2.0)...thinking on this!
+print "\n" # breaks lines more clearly for the reader
+puts "Alright.  Here's what we got:"
+print "\n" # maybe its just me getting used to console but the breaks help me read easier, will get used to it hopefully
+puts "A $0.65 Twix"
+print "\n"
+puts "B $0.50 Chips"
+print "\n"
+puts "C $0.75 Nutter Butter"
+print "\n"
+puts "D $0.65 Peanut Butter Cup"
+print "\n"
+puts "E $0.55 Juicy Fruit Gum"
+print "\n"
+puts "So, what'll you have? (Type the letter of a selection and hit enter)"
+my_letter = gets.chomp.capitalize # asks the user for their selection
+# capitalizes their answer for my calculations below
+if my_letter == "A" && my_num > 0.65
+# if user entered A and their cash is greater than the cost of the twix
+  puts "Great choice.  Here's your Twix and your $#{(my_num - 0.65).round(2)} change."
+  # calculates change by subtracting cost of twix from their stated
+  # amount of change they began with.
+elsif my_letter == "A" && my_num < 0.65
+# if the user entered A but doesn't have enough cash
+  puts "Ooo. You don't have enough, bud...awkward...I don't wanna play anymore."
+elsif my_letter == "B" && my_num > 0.5
+  puts "Great choice.  Here's your Chips and your $#{(my_num - 0.50).round(2)} change."
+  elsif my_letter == "B" && my_num < 0.5
+  puts "Ooo. You don't have enough, bud...awkward...I don't wanna play anymore."
+elsif my_letter == "C" && my_num > 0.75
+  puts "Great choice.  Here's your Nutter Butter and your $#{(my_num - 0.75).round(2)} change."
+  elsif my_letter == "C" && my_num < 0.75
+  puts "Ooo. You don't have enough, bud...awkward...I don't wanna play anymore."
+elsif my_letter == "D" && my_num > 0.65 
+  puts "Great choice.  Here's your Peanut Butter Cup and your $#{(my_num - 0.65).round(2)} change."
+  elsif my_letter == "D" && my_num < 0.65
+  puts "Ooo. You don't have enough, bud...awkward...I don't wanna play anymore."
+elsif my_letter == "E" && my_num > 0.55
+  puts "Great choice.  Here's your Juicy Fruit and your $#{(my_num - 0.55).round(2)} change."
+  elsif my_letter == "E" && my_num < 0.55
+  puts "Ooo. You don't have enough, bud...awkward...I don't wanna play anymore."
+else my_letter 
+# accounts for if they didn't enter any of the appropriate letters
+  puts "You needed to input A, B, C, D or E, babe.  Guess you weren't interested in any of the available options."
+end
+# it's tricky because I feel like using .round to turn into monetary value could mean for inaccuracy from too much rounding if preforming a lot of calculations.  I think I got around this in this assignment, because I didn't have to do many calculations, but would want to rethink using floats for monetary values in other situations that rounding would be an issue.  Maybe I could use integers, like represent $10.00 as 1000? Hm.

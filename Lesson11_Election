@@ -1,0 +1,88 @@
+# created in repl.it until I can save for a new computer https://repl.it/@achilleaeos/
+puts "2020 Election Poll For Cartoon President"
+print "\n" # break for title
+puts "Welcome to the election!"
+
+pp_array = Array.new # creates blank array for Penelope
+# that we will later fill with votes for Penelope
+sg_array = Array.new # same for Space Ghost
+sm_array = Array.new # so on
+sr_array = Array.new # so forth
+wi_array = Array.new # also creating an array for write-in votes ... for when I figure that coding out
+
+10.times do
+puts "To cast your ballot, select the letter corresponding to your candidate from the options below and hit enter." # instructions
+puts "A - Penelope Pitstop" # candidate A
+puts "B - Space Ghost" # B
+puts "C - Sailor Moon" # so on
+puts "D - Speed Racer"
+user_vote = gets.chomp.capitalize # ask user for their answer, capitalize it if they didn't
+  if user_vote == "A" # if voted for Penelope
+    pp_array.push("#{user_vote}") 
+    # push their vote value into the end of P's array
+  elsif user_vote == "B" # repeat for all candidates
+    sg_array.push("#{user_vote}")
+  elsif user_vote == "C"
+    sm_array.push("#{user_vote}")
+  elsif user_vote == "D"
+    sr_array.push("#{user_vote}")
+  else user_vote # if user didn't enter an expected letter
+    puts "Sorry, that was an invalid selection.  Your vote was not cast." # for now until figure out write-ins code
+  end
+end
+puts "Thanks for your vote! You may exit the booth!"
+
+print "\n" # line break for ease of user reading my program
+
+puts "Voting is now closed.  The results are in..."
+
+# writes in the length of our Penelope array as the number of votes
+# because we know the length == votes since array was blank beforehand
+if pp_array.length == "nil" # accounts for if no votes and blank pp
+    puts "Penelope Pitstop - 0 vote(s)"
+    penelope = 0 # creating this variable to determine winner later
+    # want penelope to be zero if there's no votes
+else pp_array.length # otherwise length is no. votes 
+    puts "Penelope Pitstop - #{pp_array.length} vote(s)"
+    penelope = pp_array.length # want this variable to be the number of votes otherwise
+end
+
+# repeating for all candidates
+if sg_array.length == "nil" 
+    puts "Space Ghost - 0 vote(s)"
+    spaceghost = 0
+else sg_array.length  
+    puts "Space Ghost - #{sg_array.length} vote(s)"
+    spaceghost = sg_array.length
+end
+
+if sm_array.length == "nil" 
+    puts "Sailor Moon - 0 vote(s)"
+    sailormoon = 0
+else sm_array.length 
+    puts "Sailor Moon - #{sm_array.length} vote(s)"
+    sailormoon = sm_array.length
+end
+
+if sr_array.length == "nil" 
+    puts "Speed Racer - 0 vote(s)"
+    speedracer = 0
+else sr_array.length 
+    puts "Speed Racer - #{sr_array.length} vote(s)"
+    speedracer = sr_array.length
+end
+
+# still figuring out write-ins bit, to account for if multiple write-ins, how to display and count their votes
+
+# now determining winner
+
+print "\n"
+if penelope > spaceghost && penelope > sailormoon && penelope > speedracer # recall penelope is number of votes so if penelope has the most votes, penelope is the winner
+  puts "Winner: Penelope"
+elsif spaceghost > penelope && spaceghost > sailormoon && spaceghost > speedracer # now run if spaceghost has most votes
+  puts "Winner: Space Ghost"
+elsif sailormoon > penelope && sailormoon > spaceghost && sailormoon > speedracer # likewise sailormoon
+  puts "Winner: Sailor Moon"
+else speedracer > penelope && speedracer > spaceghost && speedracer > sailormoon # or speed racer
+  puts "Winner: Speed Racer"
+end

@@ -1,0 +1,70 @@
+# created with repl.it until I can get a mac computer that can run all the programs I need to install.  https://repl.it/@achilleaeos/
+print "Hi! I'd like to play a numbers game with you!!  Wanna play?  I am going to ask you for some numbers and evaluate your answer in relation to the number 20.  Sound reasonable?" # explainin the rules
+print "\n" # to show the reader a paragraph break
+
+print "Kindly type a positive integer if you will, then hit enter."
+my_num = gets.chomp.to_i 
+# .to_i makes sure the user's answer is converted into an integer so that it can be compared in the if/else
+
+if my_num > 20 || my_num == 20 
+# if user picks num greater than or equal to 20
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is greater than or equal to 20."
+elsif my_num > 0 
+# if the number is less than twenty
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is less than 20."
+else 
+# if they didn't select a positive integer at all...
+	puts "Smart ass. No, that's not a positive integer.  Arg, you ruined everything."
+end
+print "\n" # paragraph break for reader
+puts "Let's play again!" 
+
+# ---> assignment asked to repeat two more times for a total of 3 numbers
+
+print "Kindly type a positive integer if you will, then hit enter."
+my_num = gets.chomp.to_i 
+
+if my_num > 20 || my_num == 20 
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is greater than or equal to 20."
+elsif my_num > 0 
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is less than 20."
+else 
+	puts "Smart ass. No, that's not a positive integer.  Arg, you ruined everything."
+end
+print "\n" # another way to show a paragraph break
+puts "Let's play again!" 
+# assignment asked to repeat two more times for a total of 3 numbers
+
+print "Kindly type a positive integer if you will, then hit enter."
+my_num = gets.chomp.to_i 
+
+if my_num > 20 || my_num == 20 
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is greater than or equal to 20."
+elsif my_num > 0 
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is less than 20."
+else 
+	puts "Smart ass. No, that's not a positive integer.  Arg, you ruined everything."
+end
+print "\n" # paragraph break for reader
+puts "Now for something different!" 
+print "\n"
+
+# Playing a slightly different version now for fun!  Using and statements instead
+
+print "I'd like to play a slightly different numbers game with you!!  Wanna play?  I am going to ask you for some numbers and evaluate your answer in relation to the number 20 - telling you if your selection is less than, greater than or equal to 20.  Sound reasonable?" # explainin the rules
+2.times do print "\n" end # to show the reader a larger paragraph break
+
+print "Kindly type a positive integer if you will, then hit enter."
+my_num = gets.chomp.to_i 
+
+if my_num > 0 && my_num < 20 # if user picks greater than 0, but less than 20
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is less than 20."
+elsif my_num > 0 && my_num > 20 # if greater than 0, greater than 20
+  print "Good job, you selected an appropriate positive integer!  #{my_num} is more than 20."
+elsif my_num == 20 # if they select 20
+  print "Good job, you selected an appropriate positive integer! #{my_num} is equal to 20."
+elsif my_num < 0 # if they select a negative integer instead
+	print "Um...you didn't follow the directions, buddy. I said a positive integer.  But, in any case, #{my_num} is less than 20."
+else # if they didn't select an integer at all...
+	puts "Smart ass. No, that's not even an integer.  How can I compare apples to oranges?  Arg, you ruined everything."
+end

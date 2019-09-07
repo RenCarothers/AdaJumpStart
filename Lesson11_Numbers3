@@ -1,0 +1,27 @@
+# using repl.it until I can save up for a mac that will run the programs I need. https://repl.it/@achilleaeos/
+puts "Let's play a numbers game!  I'm going to evaluate numbers you input to determine if they are divisible by 3.  First, How many numbers would you like to enter?"
+num_qty = gets.chomp.to_i # asks the user, turns their answer into
+# an integer.  assigns this input the variable num_qty
+
+i = 0 # initialize loop control variable to the value of 0
+until i == num_qty # loop is executed until reaching user count number
+  puts "Pick a number (positive integer)." # instructions for user
+  posint = gets.chomp.to_i # asks the user, converts to integer
+    if (posint % 3 == 0) 
+    # if the user input is divisble by 3. Divisible by three means when it is divided by 3 the remainder would be zero
+      puts "#{posint} is divisible by 3." # tell user its divisible
+    elsif posint 
+    # if it's not divisible by 3 aka has a remainder when divided by three
+      puts "#{posint} is not divisible by 3." 
+    end # end of the if else
+  i += 1 # increments the value of our loop control variable i by 1
+  # this makes the loop continue to run 1 more time until our until
+  # is true (when i is equal to the num_qty user entered)
+end # end of the until loop
+puts "Hope you enjoyed playing, friend." # closing
+
+# to figure this code out, first I wrote the loop, then i wrote 
+# the divisible by 3 code seperately
+# then i put the divisible by 3 code into the loop
+# doing it in this way while i am still figuring stuff out was much
+# easier for me to figure out than trying to do both together at once

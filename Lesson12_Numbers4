@@ -1,0 +1,60 @@
+# created on repl.it because still saving up for a mac https://repl.it/@achilleaeos
+# for the assignment see: https://github.com/Ada-Developers-Academy/jump-start/tree/master/learning-to-code/arrays#numbers-problem-assignment
+
+puts "Let's play a numbers game!  I'm going to evaluate numbers you input.  First, how many numbers would you like to enter?"
+
+game_array = Array.new # creates a new blank array
+
+game_num = gets.chomp.to_i
+
+i = 0 # initialize loop control variable to the value of 0
+until i == game_num # loop is executed until reaching user count number
+  puts "Pick a number (positive integer)." # instructions for user
+  posint = gets.chomp.to_i # asks the user, converts to integer
+  game_array.push(posint) # places the input in end of our array
+  i += 1 # increments the value of our loop control variable i by 1
+  # this makes the loop continue to run 1 more time until our until
+  # is true (when i is equal to the num_qty user entered)
+end # end of the until loop
+puts "Hope you enjoyed playing, friend." # closing
+
+print "\n"
+puts "(Note: The following evaluations are still in beta testing)"
+
+# now do the evaluation part, please
+puts "Comparing to the last value entered, #{game_array.last}, here are some observations:"
+
+game_array.each_with_index do |outputarray, index| 
+# iterates two iterators output over each next value in game_array
+# outputarray giving the value, index giving indices
+  if outputarray == game_array.last 
+  # if the array value is equal to the last array value
+    puts "The value at index [#{index}], #{outputarray}, is equal to the value at the last index, #{game_array.last}."
+  elsif outputarray > game_array.last
+  # "" greater than the last array value
+    puts "The value at index [#{index}], #{outputarray}, is greater than the value at the last index, #{game_array.last}."
+  else outputarray < game_array.last
+    puts "The value at index [#{index}], #{outputarray}, is less than the value at the last index, #{game_array.last}"
+  end
+end # closing
+#  ERROR IN THE EVALUATION...the greater than isn't always reporting correctly
+
+# still figuring out coding for the rest -->
+
+new_arr = Array.new(game_array.sort) 
+# .sort orders the values in an array from smallest to highest
+# Array.new opens a new array
+# (game_array.sort) saves our sorted array into the new array
+# except this doesn't work as expected; array not numerically sorting
+
+puts "The minimum value in the array is #{new_arr.first}." 
+# from our sorted array
+# again, isn't actually sorting tho...so .last isn't always highest
+puts "The maximum value in the array is #{new_arr.last}."
+# from our sorted array
+puts "The average of all the values in the array is..." 
+# to find the average we divide the sum of all the numbers by the amount of numbers
+# .reduce(:+) adds up all the integers in our array
+# .to_f converst that to a float because integer division truncates decimals but floats can have decimals
+# then we can divide the sum by the number of items in our array which is the same as saying .length
+puts division = ((game_array).reduce(:+).to_f / game_array.length.to_f)

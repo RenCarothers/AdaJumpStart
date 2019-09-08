@@ -1,4 +1,3 @@
-# created on repl.it because still saving up for a mac https://repl.it/@achilleaeos
 # for the assignment see: https://github.com/Ada-Developers-Academy/jump-start/tree/master/learning-to-code/arrays#numbers-problem-assignment
 
 puts "Let's play a numbers game!  I'm going to evaluate numbers you input.  First, how many numbers would you like to enter?"
@@ -18,9 +17,6 @@ until i == game_num # loop is executed until reaching user count number
 end # end of the until loop
 puts "Hope you enjoyed playing, friend." # closing
 
-print "\n"
-puts "(Note: The following evaluations are still in beta testing)"
-
 # now do the evaluation part, please
 puts "Comparing to the last value entered, #{game_array.last}, here are some observations:"
 
@@ -37,9 +33,6 @@ game_array.each_with_index do |outputarray, index|
     puts "The value at index [#{index}], #{outputarray}, is less than the value at the last index, #{game_array.last}"
   end
 end # closing
-#  ERROR IN THE EVALUATION...the greater than isn't always reporting correctly
-
-# still figuring out coding for the rest -->
 
 new_arr = Array.new(game_array.sort) 
 # .sort orders the values in an array from smallest to highest

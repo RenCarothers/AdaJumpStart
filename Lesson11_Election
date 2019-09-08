@@ -85,4 +85,6 @@ elsif sailormoon > penelope && sailormoon > spaceghost && sailormoon > speedrace
   puts "Winner: Sailor Moon"
 else speedracer > penelope && speedracer > spaceghost && speedracer > sailormoon # or speed racer
   puts "Winner: Speed Racer"
+else # should account for any ties
+  puts "We had a draw!"
 end

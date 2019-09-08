@@ -1,0 +1,42 @@
+# created with repl.it until I can save up for a mac.  https://repl.it/@achilleaeos/
+puts "Hi there!  Let's generate some student acconuts together.  Please provide me with five student names, and I will generate account details for each individual.  Sound good?"
+
+studentfirstnamesarray = Array.new # gives us a blank array to later input  first student names into
+studentlastnamesarray = Array.new # same for their last names
+studentfullnamesarray = Array.new # to combine first and last names into 
+studentidsarray = Array.new # likewise for student IDS
+studentemailsarray = Array.new # and emails
+
+# GATHERING STUDENT NAMES
+
+3.times do 
+  puts "Please enter your student's first name and hit enter." # instructions for user
+  firstnameinput = gets.chomp.upcase # asks the user, converts uppercase
+  studentfirstnamesarray.push("#{firstnameinput}") # places the input in end of our first names array
+  puts "Please enter your student's last name and hit enter."
+  lastnameinput = gets.chomp.upcase
+  studentlastnamesarray.push("#{lastnameinput}")
+  studentfullnamesarray.push("#{firstnameinput}" + " " + "#{lastnameinput}") # also puts the full name into full names array so we can more easily reference full names later, just seemed easie to me to do it this way
+end # end of the until loop
+
+puts "Thank you!"
+
+3.times do # looping this operation the specified no. times
+   idsinput = (prng = Random.new) # we're gunna generate numbers to be values for idsinput variable
+  studentidsarray.push("#{prng.rand(111111..999999)}") # store them in our array
+end # end loop
+
+x=0 # start our variable at 0 outside of our loop
+3.times do # start our loop
+  studentemailsarray.push("#{studentfirstnamesarray[x][0]}" + "#{studentlastnamesarray[x]}" + "#{studentidsarray[x][3..5]}" + "@adadevelopersacademy.org")
+  # for the variable emailsinput grab the first letter of the first name, full last name, and last 3 of student id and put these together.  then push this into the string we created for emails.   
+  x+=1 # modify x for our loop
+end
+
+# printing names and id numbers
+puts "Student Accounts Generated"
+# now we make a list of what we've generated
+# creating .count.times to run a list of all our accounts
+studentfullnamesarray.count.times do |index|
+puts "#{studentfullnamesarray[index]} #{studentidsarray[index]} #{studentemailsarray[index]}"
+end

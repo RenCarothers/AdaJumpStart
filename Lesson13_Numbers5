@@ -1,4 +1,4 @@
-# Sorry this one is still a wee bit broken!  Need to learn how to define my defaults for hash keys within hashes
+# Sorry this one is still a wee bit broken!  
 gamehash = Hash.new(0) # create a new hash, with default as integer 0
 gamehash[:random_numbers] # sets up a key for later, generated nums
 gamehash[:user_input] # sets up a key for later, user gen. nums
@@ -14,7 +14,7 @@ usernum_arr = Array.new # sets up blank array for user nums later
   randomnum_arr.push(prng) # store them in our array as integers
     # now for hash2, we want to assign our random num as a key
     if gamehash2[:"#{prng}"] == true # if the key already exists because the number was already generated in a past loop
-      z = 0
+      z = gamehash2[:"#{prng}"][:random_numbers]
       gamehash2[:"#{prng}"] = { random_numbers: (z + 1) }  # add 1 to it's value 
     else gamehash2[:"#{prng}"] == false
       gamehash2[:"#{prng}"] = { random_numbers: (1) } # if it not a key, make it
@@ -29,7 +29,7 @@ puts "Please provide five integer values between 12 and 21, both inclusive:"
   usernum_arr.push(usernum) # push into the array we made
     # if user already entered this number, add 1 to its key value, other wise set key value to 1
     if gamehash2[:"#{usernum}"] == true
-      z = 0
+      z = gamehash2[:"#{usernum}"][:user_input]
       gamehash2[:"#{usernum}"] = { user_input: (z + 1) }  # add 1 to it's value
     else gamehash2[:"#{usernum}"] == false  
       z = 0
@@ -45,7 +45,6 @@ gamehash2.default = 0
 puts "Alright, give me a number you want information about."
 inqnum = gets.chomp.to_i # retrieve from user 
 puts "Using only the 1st hash:"
-# WILL BE CREATING IF/ELSE STATEMENTS HERE BUT FIRST NEED TO FIGURE OUT HOW TO SEARCH FOR HASH KEYS AND (SEPERATELY) HASH VALUES AND HOW TO PRINT THE NUMBER OF TIMES IT WAS FOUND // for the arrays, iterate for the number but for the hash2 you can look at the value for the key to know how many times it appeared
   if gamehash[:random_numbers].count(inqnum) == 0
     puts "The number, #{inqnum}, did not show up in the randomly generated numbers."
   else
@@ -56,15 +55,18 @@ puts "Using only the 1st hash:"
   else 
     puts "The number, #{inqnum}, showed up #{gamehash[:user_input].count(inqnum)} time(s) in the user generated numbers." 
   end
-  puts "Using only the 2nd hash:" # don't know what to do for when the key doesn't exist and get key error... I thought this would be fixed by defining a default to gamehash2 but perhaps it is because the hashes inside of gamehash2 do not have defaults and I am not sure how to set them...
-  if gamehash2[:"#{inqnum}"][:random_numbers].has_key?(inqnum) == true
+  puts "Using only the 2nd hash:" # not equating to first hash
+  if gamehash2[:"#{inqnum}"][:random_numbers] == true
     puts "The number, #{inqnum}, did show up in the randomly generated numbers #{gamehash2["#{inqnum}"][:random_numbers].count(inqnum)} time(s)."
-  else gamehash2[:"#{inqnum}"][:random_numbers].has_key?(inqnum) == 0
+  else gamehash2[:"#{inqnum}"][:random_numbers] == nil
     puts "The number, #{inqnum}, did not show up in the randomly generated numbers."
   end
-  if gamehash2[:"#{inqnum}"][:user_input].key?(inqnum) == true
-    puts "The number, #{inqnum}, was a number you provided earlier in the game #{gamehash2["#{inqnum}"][:user_input].count(inqnum)} time(s)."
-  else
-    "The number, #{inqnum}, was not a number you provided earlier in the game."
+  if gamehash2[:"#{inqnum}"][:user_input] == true
+    puts "The number, #{inqnum}, did show up in the user generated numbers #{gamehash2["#{inqnum}"][:random_numbers].count(inqnum)} time(s)."
+  else gamehash2[:"#{inqnum}"][:user_input] == nil
+    puts "The number, #{inqnum}, did not show up in the user generated numbers."
   end
+print gamehash
+print "\n"
+print gamehash2
 end # end loop

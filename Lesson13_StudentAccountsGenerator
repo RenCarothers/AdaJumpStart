@@ -1,15 +1,6 @@
-# my loops are off and are causing the pushing of the hash into the array to not happen the correct number of times - only pushes in the last occurance of the loop
 puts "Hi there!  Let's generate some student acconuts together.  Please provide me with five student names, and I will generate account details for each individual.  Sound good?"
 
-student_data = [] # blank array
-
-studentfullnamesarray = Array.new # to combine first and last names into 
-
-studentfirstnamesarray = Array.new # gives us a blank array to later input  first student names into
-studentlastnamesarray = Array.new # same for their last names
-studentidsarray = Array.new # likewise for student IDS
-studentemailsarray = Array.new # and emails
-
+student_data = [] # blank array - will fill with hashes later
 # GATHERING STUDENT NAMES
 
 # made a student hash to write over as needed
@@ -19,27 +10,21 @@ student_hash = { name: "Usagi Tsukino", id_no: "111111", email: "tsukino111@adad
     firstnameinput = gets.chomp.upcase # asks the user, converts uppercase
     puts "Please enter your student's last name and hit enter."
     lastnameinput = gets.chomp.upcase
+    idsinput = (prng = Random.new) # we're gunna generate numbers to be values for idsinput variable
+    idsgen = "#{prng.rand(111111..999999)}" # create a rando no
     student_hash[:name] = ("#{firstnameinput}" + " " + "#{lastnameinput}") # puts our input into our hash
-       1.times do 
-        idsinput = (prng = Random.new) # we're gunna generate numbers to be values for idsinput variable
-        idsgen = "#{prng.rand(111111..999999)}" # create a rando no
-        x=0 # start our variable at 0 outside of our loop
-          1.times do # start our loop
-            student_hash[:email] = (("#{firstnameinput}" + " " + "#{lastnameinput}") + "#{(idsgen.slice(3..5))}" + "@adadevelopersacademy.org")
-            # for the variable grab the first letter of the first name, full last name, and last 3 of student id and put these together.  then push this into the string we created for emails.
-            student_hash[:id_no] = idsgen # store it in our hash   
-            x+=1 # modify x for our loop
-          end
-      end
-  student_data.push(student_hash) # places the input in end of our first names array
-  end
+    student_hash[:email] = (("#{firstnameinput}" + " " + "#{lastnameinput}") + "#{(idsgen.slice(3..5))}" + "@adadevelopersacademy.org")
+    # for the variable grab the first letter of the first name, full last name, and last 3 of student id and put these together.  then push this into the string we created for emails.
+    student_hash[:id_no] = idsgen # store it in our hash  
+    student_data.push("#{student_hash}") # WHERE DO I MOVE THIS?? places the input in end of our first names array, thus filling it with hashes 
+   end
 
 puts "Thank you!"
-
 # printing names and id numbers
 puts "Student Accounts Generated"
 # now we make a list of what we've generated
-# creating .count.times to run a list of all our accounts
-student_data.count.times do |index|
-puts student_data[index]
-end
+puts student_data
+
+
+
+

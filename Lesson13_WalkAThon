@@ -1,0 +1,48 @@
+puts "Welcome to the PokeWalk-A-Thon Tracker!"
+puts "Let's see how much our Pokemon can raise for Pokecenters across Kanto!"
+
+puts "Firstly, remind me, what's the $ goal for this event?  (Enter your monetary value, without '$' and press enter.)"
+event_goal = gets.chomp.to_f # .to_f instead of .to_i lets us have a decimal if needed
+puts "Thank you!"
+puts "And what is the $ amount that is earned for one lap of the walk-a-thon? (Enter your monetary value, without '$' and press enter.)"
+pokearr = Array.new # setting up an array for later
+lap_earn = gets.chomp.to_i
+puts "Thank you \n"
+puts "Please enter the number of laps that Pikachu walked."
+pika_walk = gets.chomp.to_i
+pokearr.push(pika_walk) # I want the lap amounts in the array to compare them easily at the end
+puts "Please enter the number of laps that Charmander walked."
+char_walk = gets.chomp.to_i
+pokearr.push(char_walk)
+puts "Please enter the number of laps that Bulbasaur walked."
+bulb_walk = gets.chomp.to_i
+pokearr.push(bulb_walk)
+puts "Please enter the number of laps that Snorlax walked."
+snor_walk = gets.chomp.to_i
+pokearr.push(snor_walk)
+puts "Please enter the number of laps that Mew floated."
+mew_float = gets.chomp.to_i
+pokearr.push(mew_float)
+
+# Setting up a hash to store all our pokemon's laps associated with their names
+pokehash = { pikachu: pika_walk, charmander: char_walk, bulbasaur: bulb_walk, snorlax: snor_walk, mew: mew_float }
+
+
+puts "========================================" # results
+puts "Highest Earning Walker Is..." # find highest value amoung hash values and print it
+puts pokehash.key(pokehash.values.max).capitalize
+# pokehash.values.max would display the highest no of laps
+# puts pokehash.key calls the pokemon for that value
+# PROBLEM: it calls the first key it finds..how to I account for a tie?
+
+# set up a variable that is the sum of all the values in the array we set up multipled by the user's entered $ per lap...this is the total earned
+tot
+total_laps = (pokearr.reduce(:+).to_f) # calculate total laps walked by adding the sum of the pokemon laps collected in our array
+total_earned = (multiplication = (total_laps) * lap_earn) # calculated the total earned by multiplying our variable by the number of laps
+puts "Total $ Amount Earned: $#{total_earned}" # paste that value
+  # for calculating if goal was met
+  if total_earned >= event_goal # we earned enough! because the total earned is equal to or more than the user input goal
+    puts "Goal Met? Yes! Nurse Joy will be so pleased!"
+  elsif total_earned < event_goal # we didn't earn enough...
+    puts "Goal Met? No...oh no, the Chanseys are going to cry and we might've pissed off Officer Jenny..."
+  end

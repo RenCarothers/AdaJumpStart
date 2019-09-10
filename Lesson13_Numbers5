@@ -1,4 +1,4 @@
-# Sorry this one is still a wee bit broken!  
+# Sorry this one is still a wee bit broken!  When the number the user asks about is not a user inputed number or random number, I receive an 'undefined method has key for 0:integer' error
 gamehash = Hash.new(0) # create a new hash, with default as integer 0
 gamehash[:random_numbers] # sets up a key for later, generated nums
 gamehash[:user_input] # sets up a key for later, user gen. nums
@@ -59,17 +59,14 @@ puts "Using only the 1st hash:"
     puts "The number, #{inqnum}, showed up #{gamehash[:user_input].count(inqnum)} time(s) in the user generated numbers." 
   end
 puts "Using only the 2nd hash:" # not equating to first hash
-  if gamehash2[:"#{inqnum}"].has_key?(:random_numbers)
-    puts "The number, #{inqnum}, did show up in the randomly generated numbers #{gamehash2[:"#{inqnum}"][:random_numbers]} time(s)."
+  if gamehash2[:"#{inqnum}"].has_key?(random_numbers) == true
+    puts "The number, #{inqnum}, showed up #{gamehash2[:"#{inqnum}"][:random_numbers]} time(s) in the randomly generated numbers."
   else gamehash2[:"#{inqnum}"][:random_numbers] == nil
     puts "The number, #{inqnum}, did not show up in the randomly generated numbers."
   end
-  if gamehash2[:"#{inqnum}"].has_key?(:user_input)
-    puts "The number, #{inqnum}, did show up in the user generated numbers #{gamehash2[:"#{inqnum}"][:user_input]} time(s)."
+  if gamehash2[:"#{inqnum}"].has_key?(user_input) == true
+    puts "The number, #{inqnum}, showed up #{gamehash2[:"#{inqnum}"][:user_input]} time(s) in the user generated numbers."
   else gamehash2[:"#{inqnum}"][:user_input] == nil
-    puts "The number, #{inqnum}, did not show up in the user generated numbers."
+    puts "The number, #{inqnum}, was not a number you provided earlier in the game."
   end
-print gamehash
-print "\n"
-print gamehash2
 end # end loop

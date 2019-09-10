@@ -1,5 +1,14 @@
-# my loops are off and are causing the pushing of the hash into the array to not happen the correct number of times - only pushes in the last occurance of the loop
+# sorry, I copied over the wrong version of the file last time!! 
 puts "Hi there!  Let's generate some student acconuts together.  Please provide me with five student names, and I will generate account details for each individual.  Sound good?"
+
+student_data = [] # blank array
+
+studentfullnamesarray = Array.new # to combine first and last names into 
+
+studentfirstnamesarray = Array.new # gives us a blank array to later input  first student names into
+studentlastnamesarray = Array.new # same for their last names
+studentidsarray = Array.new # likewise for student IDS
+studentemailsarray = Array.new # and emails
 
 student_data = [] # blank array - will fill with hashes later
 # GATHERING STUDENT NAMES
@@ -14,89 +23,23 @@ student_hash = { name: "Usagi Tsukino", id_no: "111111", email: "tsukino111@adad
     idsinput = (prng = Random.new) # we're gunna generate numbers to be values for idsinput variable
     idsgen = "#{prng.rand(111111..999999)}" # create a rando no
     student_hash[:name] = ("#{firstnameinput}" + " " + "#{lastnameinput}") # puts our input into our hash
-    student_hash[:email] = (("#{firstnameinput}" + " " + "#{lastnameinput}") + "#{(idsgen.slice(3..5))}" + "@adadevelopersacademy.org")
-    # for the variable grab the first letter of the first name, full last name, and last 3 of student id and put these together.  then push this into the string we created for emails.
-    student_hash[:id_no] = idsgen # store it in our hash  
-    student_data.push("#{student_hash}") # WHERE DO I MOVE THIS?? places the input in end of our first names array, thus filling it with hashes 
-   end
-
+       1.times do 
+        idsinput = (prng = Random.new) # we're gunna generate numbers to be values for idsinput variable
+        idsgen = "#{prng.rand(111111..999999)}" # create a rando no
+        x=0 # start our variable at 0 outside of our loop
+          1.times do # start our loop
+            student_hash[:email] = (("#{firstnameinput}" + " " + "#{lastnameinput}") + "#{(idsgen.slice(3..5))}" + "@adadevelopersacademy.org")
+            # for the variable grab the first letter of the first name, full last name, and last 3 of student id and put these together.  then push this into the string we created for emails.
+            student_hash[:id_no] = idsgen # store it in our hash   
+            x+=1 # modify x for our loop
+          end
+      student_data.push("#{student_hash}") # put it into our array
+    end
+  end
 puts "Thank you!"
+
 # printing names and id numbers
 puts "Student Accounts Generated"
 # now we make a list of what we've generated
 # creating .count.times to run a list of all our accounts
-puts # Sorry this one is still a wee bit broken!  
-gamehash = Hash.new(0) # create a new hash, with default as integer 0
-gamehash[:random_numbers] # sets up a key for later, generated nums
-gamehash[:user_input] # sets up a key for later, user gen. nums
-
-gamehash2 = Hash.new(0) # for our second hash
-
-randomnum_arr = Array.new # sets up a blank array for gen. nums later
-usernum_arr = Array.new # sets up blank array for user nums later
-# generate an array of 5 random numbers
-5.times do # looping this operation the specified no. times
-  input = (prng = Random.new)
-  prng = (prng.rand(12..21)).to_i # setting up number generation
-  randomnum_arr.push(prng) # store them in our array as integers
-    # now for hash2, we want to assign our random num as a key
-    if gamehash2.has_key?(:"#{prng}") and gamehash2[:"#{prng}"].has_key?(:random_numbers) # if the key already exists because the number was already generated in a past loop
-      z = gamehash2[:"#{prng}"][:random_numbers]
-      gamehash2[:"#{prng}"][:random_numbers] = (z+=1)  # add 1 to it's value 
-    else
-      gamehash2[:"#{prng}"] = {}
-      gamehash2[:"#{prng}"][:random_numbers] = 1 # if it not a key, make it
-    end
-  # if gamehash2[(prng)] is in there, += 1 else, prng = 1
-end # end loop
-
-puts "Please provide five integer values between 12 and 21, both inclusive:"
-5.times do # looping for 5 numbers
-  puts "Select a number and hit enter."
-  usernum = gets.chomp.to_i # get user info
-  usernum_arr.push(usernum) # push into the array we made
-    # if user already entered this number, add 1 to its key value, other wise set key value to 1
-    if gamehash2.has_key?(:"#{usernum}") and gamehash2[:"#{usernum}"].has_key?(:user_input) 
-      z = gamehash2[:"#{usernum}"][:user_input]
-      gamehash2[:"#{usernum}"][:user_input] = (z+=1)  # add 1 to it's value
-    elsif gamehash2.has_key?(:"#{usernum}") and gamehash2[:"#{usernum}"].has_key?(:random_numbers) 
-      gamehash2[:"#{usernum}"][:user_input] = 1 
-    else
-      gamehash2[:"#{usernum}"] = {}
-      gamehash2[:"#{usernum}"][:user_input] = 1 # set value to 1
-    end
-end
-
-gamehash[:random_numbers] = randomnum_arr # puts gen nums array into hash1  gen nums key
-gamehash[:user_input] = usernum_arr # likewise for user nums
-
-gamehash2.default = 0
-3.times do # loop to ask user three times
-puts "Alright, give me a number you want information about."
-inqnum = gets.chomp.to_i # retrieve from user 
-puts "Using only the 1st hash:"
-  if gamehash[:random_numbers].count(inqnum) == 0
-    puts "The number, #{inqnum}, did not show up in the randomly generated numbers."
-  else
-    puts "The number, #{inqnum}, showed up #{gamehash[:random_numbers].count(inqnum)} time(s) in the randomly generated numbers."
-  end
-  if gamehash[:user_input].count(inqnum) == 0
-    puts "The number, #{inqnum}, was not a number you provided earlier in the game."
-  else 
-    puts "The number, #{inqnum}, showed up #{gamehash[:user_input].count(inqnum)} time(s) in the user generated numbers." 
-  end
-puts "Using only the 2nd hash:" # not equating to first hash
-  if gamehash2[:"#{inqnum}"].has_key?(:random_numbers)
-    puts "The number, #{inqnum}, did show up in the randomly generated numbers #{gamehash2[:"#{inqnum}"][:random_numbers]} time(s)."
-  else gamehash2[:"#{inqnum}"][:random_numbers] == nil
-    puts "The number, #{inqnum}, did not show up in the randomly generated numbers."
-  end
-  if gamehash2[:"#{inqnum}"].has_key?(:user_input)
-    puts "The number, #{inqnum}, did show up in the user generated numbers #{gamehash2[:"#{inqnum}"][:user_input]} time(s)."
-  else gamehash2[:"#{inqnum}"][:user_input] == nil
-    puts "The number, #{inqnum}, did not show up in the user generated numbers."
-  end
-print gamehash
-print "\n"
-print gamehash2
-end # end loop
+puts student_data

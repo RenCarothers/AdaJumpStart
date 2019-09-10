@@ -13,11 +13,12 @@ usernum_arr = Array.new # sets up blank array for user nums later
   prng = (prng.rand(12..21)).to_i # setting up number generation
   randomnum_arr.push(prng) # store them in our array as integers
     # now for hash2, we want to assign our random num as a key
-    if gamehash2[:"#{prng}"] == true # if the key already exists because the number was already generated in a past loop
+    if gamehash2.has_key?(:"#{prng}") and gamehash2[:"#{prng}"].has_key?(:random_numbers) # if the key already exists because the number was already generated in a past loop
       z = gamehash2[:"#{prng}"][:random_numbers]
-      gamehash2[:"#{prng}"] = { random_numbers: (z + 1) }  # add 1 to it's value 
-    else gamehash2[:"#{prng}"] == false
-      gamehash2[:"#{prng}"] = { random_numbers: (1) } # if it not a key, make it
+      gamehash2[:"#{prng}"][:random_numbers] = (z+=1)  # add 1 to it's value 
+    else
+      gamehash2[:"#{prng}"] = {}
+      gamehash2[:"#{prng}"][:random_numbers] = 1 # if it not a key, make it
     end
   # if gamehash2[(prng)] is in there, += 1 else, prng = 1
 end # end loop
@@ -28,12 +29,14 @@ puts "Please provide five integer values between 12 and 21, both inclusive:"
   usernum = gets.chomp.to_i # get user info
   usernum_arr.push(usernum) # push into the array we made
     # if user already entered this number, add 1 to its key value, other wise set key value to 1
-    if gamehash2[:"#{usernum}"] == true
+    if gamehash2.has_key?(:"#{usernum}") and gamehash2[:"#{usernum}"].has_key?(:user_input) 
       z = gamehash2[:"#{usernum}"][:user_input]
-      gamehash2[:"#{usernum}"] = { user_input: (z + 1) }  # add 1 to it's value
-    else gamehash2[:"#{usernum}"] == false  
-      z = 0
-      gamehash2[:"#{usernum}"] = { user_input: 1 }  # add 1 to it's value
+      gamehash2[:"#{usernum}"][:user_input] = (z+=1)  # add 1 to it's value
+    elsif gamehash2.has_key?(:"#{usernum}") and gamehash2[:"#{usernum}"].has_key?(:random_numbers) 
+      gamehash2[:"#{usernum}"][:user_input] = 1 
+    else
+      gamehash2[:"#{usernum}"] = {}
+      gamehash2[:"#{usernum}"][:user_input] = 1 # set value to 1
     end
 end
 
@@ -55,14 +58,14 @@ puts "Using only the 1st hash:"
   else 
     puts "The number, #{inqnum}, showed up #{gamehash[:user_input].count(inqnum)} time(s) in the user generated numbers." 
   end
-  puts "Using only the 2nd hash:" # not equating to first hash
-  if gamehash2[:"#{inqnum}"][:random_numbers] == true
-    puts "The number, #{inqnum}, did show up in the randomly generated numbers #{gamehash2["#{inqnum}"][:random_numbers].count(inqnum)} time(s)."
+puts "Using only the 2nd hash:" # not equating to first hash
+  if gamehash2[:"#{inqnum}"].has_key?(:random_numbers)
+    puts "The number, #{inqnum}, did show up in the randomly generated numbers #{gamehash2[:"#{inqnum}"][:random_numbers]} time(s)."
   else gamehash2[:"#{inqnum}"][:random_numbers] == nil
     puts "The number, #{inqnum}, did not show up in the randomly generated numbers."
   end
-  if gamehash2[:"#{inqnum}"][:user_input] == true
-    puts "The number, #{inqnum}, did show up in the user generated numbers #{gamehash2["#{inqnum}"][:random_numbers].count(inqnum)} time(s)."
+  if gamehash2[:"#{inqnum}"].has_key?(:user_input)
+    puts "The number, #{inqnum}, did show up in the user generated numbers #{gamehash2[:"#{inqnum}"][:user_input]} time(s)."
   else gamehash2[:"#{inqnum}"][:user_input] == nil
     puts "The number, #{inqnum}, did not show up in the user generated numbers."
   end
